@@ -7,6 +7,7 @@ public:
 	UIManager(unsigned int x, unsigned int y);
 	void update();
 	void draw(sf::Drawable& drawable);
+	bool isOpen();
 
 private:
 	sf::RenderWindow window;

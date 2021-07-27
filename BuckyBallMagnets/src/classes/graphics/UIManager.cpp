@@ -22,3 +22,7 @@ void UIManager::update() {
 void UIManager::draw(sf::Drawable& drawable) {
 	texture.draw(drawable);
 }
+
+bool UIManager::isOpen() {
+	return window.isOpen();
+}

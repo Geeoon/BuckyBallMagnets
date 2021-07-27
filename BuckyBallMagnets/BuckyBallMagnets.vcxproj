@@ -139,11 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\classes\UIManager.cpp" />
+    <ClCompile Include="src\classes\graphics\UIManager.cpp" />
+    <ClCompile Include="src\classes\scene\BuckyBall.cpp" />
+    <ClCompile Include="src\classes\scene\Scene.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\classes\UIManager.h" />
+    <ClInclude Include="src\classes\graphics\UIManager.h" />
+    <ClInclude Include="src\classes\physics\Vector2.h" />
+    <ClInclude Include="src\classes\scene\BuckyBall.h" />
+    <ClInclude Include="src\classes\scene\Scene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
