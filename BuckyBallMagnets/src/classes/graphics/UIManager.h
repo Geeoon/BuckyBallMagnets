@@ -10,6 +10,7 @@ public:
 	bool isOpen();
 
 private:
+	void pollEvents();
 	sf::RenderWindow window;
 	sf::RenderTexture texture;
 };

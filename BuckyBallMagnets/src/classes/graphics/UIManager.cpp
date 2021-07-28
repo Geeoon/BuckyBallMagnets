@@ -7,7 +7,7 @@ UIManager::UIManager() {
 }
 
 UIManager::UIManager(unsigned int x, unsigned int y) {
-	window.create(sf::VideoMode(x, y), "Bucky Balls", sf::Style::Fullscreen);
+	window.create(sf::VideoMode(x, y), "Bucky Balls", sf::Style::Close);
 	window.setFramerateLimit(300);
 	texture.create(x, y);
 }
@@ -17,6 +17,7 @@ void UIManager::update() {
 	window.draw(sf::Sprite(texture.getTexture()));
 	window.display();
 	texture.clear();
+	pollEvents();
 }
 
 void UIManager::draw(sf::Drawable& drawable) {
@@ -25,4 +26,22 @@ void UIManager::draw(sf::Drawable& drawable) {
 
 bool UIManager::isOpen() {
 	return window.isOpen();
+}
+
+void UIManager::pollEvents() {
+	sf::Event e;
+	while (window.pollEvent(e)) {
+		switch (e.type) {
+			case sf::Event::Closed: {
+				window.close();
+			} break;
+			case sf::Event::KeyPressed: {
+				switch (e.key.code) {
+					case sf::Keyboard::Escape: {
+						window.close();
+					} break;
+				}
+			}
+		}
+	}
 }
