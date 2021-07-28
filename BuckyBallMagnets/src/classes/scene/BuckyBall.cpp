@@ -11,6 +11,6 @@ void BuckyBall::update(float dt) {
 	Vector2 acceleration;
 	acceleration = netForce / mass;
 
-	velocity += acceleration;
+	velocity += acceleration * dt;
 	position += velocity * dt;
 }

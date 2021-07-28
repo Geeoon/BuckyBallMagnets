@@ -1,5 +1,7 @@
+#include <SFML/Graphics.hpp>
 #include "../physics/Vector2.h"
 // https://www.khanacademy.org/science/physics/magnetic-forces-and-magnetic-fields/magnets-magnetic/v/introduction-to-magnetism
+
 class BuckyBall {
 public:
 	BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos);
