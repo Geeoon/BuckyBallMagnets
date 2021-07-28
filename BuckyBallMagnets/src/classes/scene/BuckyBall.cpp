@@ -19,3 +19,7 @@ void BuckyBall::update(float dt) {
 	position += velocity * dt;
 	shape.setPosition(position.x, -position.y);
 }
+
+void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) {
+	target.draw(shape);
+}
