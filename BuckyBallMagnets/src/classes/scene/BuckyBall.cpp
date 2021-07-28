@@ -1,7 +1,11 @@
 #include "BuckyBall.h"
 
-BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos) : mass{ m }, radius{ r }, g{ gravitationalAcceleration }, magnetism{ 0.0f, 0.0f }, velocity{ 0.0f, 0.0f }, position{ pos } {
-
+BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos) : shape{ r }, mass { m }, radius{ r }, g{ gravitationalAcceleration }, magnetism{ 0.0f, 0.0f }, velocity{ 0.0f, 0.0f }, position{ pos } {
+	shape.setPosition(pos.x, -pos.y);
+	shape.setFillColor(sf::Color::Transparent);
+	shape.setOutlineColor(sf::Color::Red);
+	shape.setOutlineThickness(2);
+	shape.setOrigin(shape.getRadius() + shape.getOutlineThickness() / 2.0f, shape.getRadius() + shape.getOutlineThickness() / 2.0f);
 }
 
 void BuckyBall::update(float dt) {
@@ -13,4 +17,5 @@ void BuckyBall::update(float dt) {
 
 	velocity += acceleration * dt;
 	position += velocity * dt;
+	shape.setPosition(position.x, -position.y);
 }

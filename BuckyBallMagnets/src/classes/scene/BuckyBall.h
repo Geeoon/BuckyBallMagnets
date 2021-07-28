@@ -8,6 +8,7 @@ public:
 	void update(float dt);
 
 private:
+	sf::CircleShape shape;
 	const float mass, radius;
 	const Vector2 g;
 	Vector2 magnetism;
