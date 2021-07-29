@@ -20,6 +20,6 @@ void BuckyBall::update(float dt) {
 	shape.setPosition(position.x, -position.y);
 }
 
-void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) {
+void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(shape);
 }
