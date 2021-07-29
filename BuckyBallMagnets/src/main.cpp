@@ -6,6 +6,7 @@ int main() {
 	Scene scene{};
 	
 	while (ui.isOpen()) {
+		scene.update();
 		ui.draw(scene);
 		ui.update();
 	}

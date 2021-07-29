@@ -17,7 +17,7 @@ void BuckyBall::update(float dt) {
 
 	velocity += acceleration * dt;
 	position += velocity * dt;
-	shape.setPosition(position.x, -position.y);
+	shape.setPosition(position.x, position.y);
 }
 
 void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
