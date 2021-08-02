@@ -6,6 +6,7 @@ BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, co
 	shape.setOutlineColor(sf::Color::Red);
 	shape.setOutlineThickness(2);
 	shape.setOrigin(shape.getRadius() + shape.getOutlineThickness() / 2.0f, shape.getRadius() + shape.getOutlineThickness() / 2.0f);
+	velocity.x = 20;
 }
 
 void BuckyBall::update(float dt) {
@@ -18,6 +19,12 @@ void BuckyBall::update(float dt) {
 	velocity += acceleration * dt;
 	position += velocity * dt;
 	shape.setPosition(position.x, position.y);
+	if (position.y < 0 || position.y > 800) {
+		velocity.y = -velocity.y;
+	}
+	if (position.x < 0 || position.x > 800) {
+		velocity.x = -velocity.x;
+	}
 }
 
 void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
