@@ -41,7 +41,7 @@ void UIManager::pollEvents() {
 						window.close();
 					} break;
 				}
-			}
+			} break;
 		}
 	}
 }

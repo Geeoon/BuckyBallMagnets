@@ -1,5 +1,5 @@
 #include "BuckyBall.h"
-// NOTE: ENERY IS NOT CONSERVATIVE (Figure out why later)
+
 BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos) : shape{ r }, mass { m }, radius{ r }, g{ gravitationalAcceleration }, magnetism{ 0.0f, 0.0f }, velocity{ 0.0f, 0.0f }, position{ pos } {
 	shape.setPosition(pos.x, -pos.y);
 	shape.setFillColor(sf::Color::Transparent);
@@ -9,7 +9,6 @@ BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, co
 }
 
 void BuckyBall::update(float dt) {
-	dt = 0.05f;
 	Vector2 netForce;
 	netForce += mass * g;
 
@@ -53,4 +52,8 @@ void BuckyBall::update(float dt) {
 
 void BuckyBall::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(shape);
+}
+
+float BuckyBall::getRadius() {
+	return radius;
 }

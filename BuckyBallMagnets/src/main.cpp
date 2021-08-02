@@ -2,7 +2,7 @@
 #include "classes/scene/Scene.h"
 
 int main() {
-	UIManager ui{ 800, 800 };
+	UIManager ui{};
 	Scene scene{};
 	
 	while (ui.isOpen()) {

@@ -8,6 +8,7 @@ public:
 	BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos);
 	void update(float dt);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	float getRadius();
 
 private:
 	const Vector2 bound{ 800.0f, 800.0f };
