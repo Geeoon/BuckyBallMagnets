@@ -10,6 +10,7 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 private:
+	const Vector2 bound{ 800.0f, 800.0f };
 	sf::CircleShape shape;
 	const float mass, radius;
 	const Vector2 g{};

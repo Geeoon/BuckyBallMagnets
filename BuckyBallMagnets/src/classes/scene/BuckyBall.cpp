@@ -19,11 +19,26 @@ void BuckyBall::update(float dt) {
 	velocity += acceleration * dt;
 	position += velocity * dt;
 	shape.setPosition(position.x, position.y);
-	if (position.y < 0 || position.y > 800) {
+	if (position.y < 0.0f || position.y > bound.y) {
 		velocity.y = -velocity.y;
+		if (position.y < 0.0f) {
+			velocity.y += position.y * g.y;
+			position.y = -position.y;
+		} else {
+			velocity.y += (bound.y - position.y) * g.y;
+			position.y = 2.0f * bound.y - position.y;
+		}
 	}
-	if (position.x < 0 || position.x > 800) {
+
+	if (position.x < 0.0f || position.x > bound.x) {
 		velocity.x = -velocity.x;
+		if (position.x < 0.0f) {
+			velocity.x += position.x * g.x;
+			position.y = -position.y;
+		} else {
+			velocity.x += (bound.x - position.x) * g.x;
+			position.x = 2.0f * bound.x - position.x;
+		}
 	}
 }
 
