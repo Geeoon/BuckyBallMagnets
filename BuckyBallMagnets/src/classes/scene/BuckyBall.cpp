@@ -19,26 +19,30 @@ void BuckyBall::update(float dt) {
 	velocity += acceleration * dt;
 	position += velocity * dt;
 	shape.setPosition(position.x, position.y);
-	if (position.y < 0.0f || position.y > bound.y) {
+	if (position.y - radius <= 0.0f || position.y + radius >= bound.y) {
 		velocity.y = -velocity.y;
-		if (position.y < 0.0f) {
-			velocity.y += position.y * g.y;
-			position.y = -position.y;
+		Vector2 newPos{ position };
+		if (position.y - radius <= 0.0f) {
+			newPos.y = radius;
 		} else {
-			velocity.y += (bound.y - position.y) * g.y;
-			position.y = 2.0f * bound.y - position.y;
+			newPos.y = bound.y - radius;
 		}
+		float deltaH{ newPos.y - position.y };
+		position = newPos;
+		velocity.y = (velocity.y / fabsf(velocity.y)) * sqrtf(2.0f * g.y * deltaH + velocity.y * velocity.y);  // derived from KE = mgh
 	}
 
-	if (position.x < 0.0f || position.x > bound.x) {
+	if (position.x - radius <= 0.0f || position.x + radius >= bound.x) {
 		velocity.x = -velocity.x;
-		if (position.x < 0.0f) {
-			velocity.x += position.x * g.x;
-			position.y = -position.y;
+		Vector2 newPos{ position };
+		if (position.x - radius <= 0.0f) {
+			newPos.x = radius;
 		} else {
-			velocity.x += (bound.x - position.x) * g.x;
-			position.x = 2.0f * bound.x - position.x;
+			newPos.x = bound.x - radius;
 		}
+		float deltaX{ newPos.x - position.x };
+		position = newPos;
+		velocity.x = (velocity.x / fabsf(velocity.x)) * sqrtf(2.0f * g.x * deltaX + velocity.x * velocity.x);
 	}
 }
 
