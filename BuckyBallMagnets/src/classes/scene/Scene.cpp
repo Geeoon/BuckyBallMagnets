@@ -1,7 +1,9 @@
 #include "Scene.h"
 
 Scene::Scene() {
-	buckyballs.push_back(std::make_unique<BuckyBall>(Vector2{ 0.0f, -9.81f }, 0.01f, 20.0f, Vector2{ 50.0f, 50.0f }));
+	for (size_t i = 0; i < 10; i++) {
+		buckyballs.push_back(std::make_unique<BuckyBall>(Vector2{ -9.81f, 0.0f * 10.0f }, 0.01f, 10.0f, Vector2{ 100.0f + 20.0f * i, 100.0f + 20.0f * i }));
+	}
 	clock.restart();
 }
 

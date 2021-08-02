@@ -1,15 +1,15 @@
 #include "BuckyBall.h"
-
+// NOTE: ENERY IS NOT CONSERVATIVE (Figure out why later)
 BuckyBall::BuckyBall(const Vector2& gravitationalAcceleration, const float m, const float r, const Vector2& pos) : shape{ r }, mass { m }, radius{ r }, g{ gravitationalAcceleration }, magnetism{ 0.0f, 0.0f }, velocity{ 0.0f, 0.0f }, position{ pos } {
 	shape.setPosition(pos.x, -pos.y);
 	shape.setFillColor(sf::Color::Transparent);
 	shape.setOutlineColor(sf::Color::Red);
 	shape.setOutlineThickness(2);
 	shape.setOrigin(shape.getRadius() + shape.getOutlineThickness() / 2.0f, shape.getRadius() + shape.getOutlineThickness() / 2.0f);
-	velocity.x = 20;
 }
 
 void BuckyBall::update(float dt) {
+	dt = 0.05f;
 	Vector2 netForce;
 	netForce += mass * g;
 
@@ -29,7 +29,10 @@ void BuckyBall::update(float dt) {
 		}
 		float deltaH{ newPos.y - position.y };
 		position = newPos;
-		velocity.y = (velocity.y / fabsf(velocity.y)) * sqrtf(2.0f * g.y * deltaH + velocity.y * velocity.y);  // derived from KE = mgh
+		// find better way of returning sign.
+		if (velocity.y != 0) {
+			velocity.y = (velocity.y / fabsf(velocity.y)) * sqrtf(velocity.y * velocity.y - 2.0f * g.y * deltaH);  // derived from KE = mgh
+		}
 	}
 
 	if (position.x - radius <= 0.0f || position.x + radius >= bound.x) {
@@ -42,7 +45,9 @@ void BuckyBall::update(float dt) {
 		}
 		float deltaX{ newPos.x - position.x };
 		position = newPos;
-		velocity.x = (velocity.x / fabsf(velocity.x)) * sqrtf(2.0f * g.x * deltaX + velocity.x * velocity.x);
+		if (velocity.x != 0) {
+			velocity.x = (velocity.x / fabsf(velocity.x)) * sqrtf(velocity.x * velocity.x - 2.0f * g.x * deltaX);
+		}
 	}
 }
 
