@@ -29,9 +29,7 @@ void BuckyBall::update(float dt) {
 		float deltaH{ newPos.y - position.y };
 		position = newPos;
 		// find better way of returning sign.
-		if (velocity.y != 0) {
-			velocity.y = (velocity.y / fabsf(velocity.y)) * sqrtf(velocity.y * velocity.y - 2.0f * g.y * deltaH);  // derived from KE = mgh
-		}
+		velocity.y = ((velocity.y > 0) - (velocity.y < 0)) * sqrtf(velocity.y * velocity.y - 2.0f * g.y * deltaH);  // derived from KE = mgh
 	}
 
 	if (position.x - radius <= 0.0f || position.x + radius >= bound.x) {
@@ -44,9 +42,7 @@ void BuckyBall::update(float dt) {
 		}
 		float deltaX{ newPos.x - position.x };
 		position = newPos;
-		if (velocity.x != 0) {
-			velocity.x = (velocity.x / fabsf(velocity.x)) * sqrtf(velocity.x * velocity.x - 2.0f * g.x * deltaX);
-		}
+		velocity.x = ((velocity.x > 0) - (velocity.x < 0)) * sqrtf(velocity.x * velocity.x - 2.0f * g.x * deltaX);  // derived from KE = mgh
 	}
 }
 
